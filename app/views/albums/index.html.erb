@@ -1,0 +1,29 @@
+<h1>
+  <% if @query.nil? %>
+    All Albums
+  <% else %>
+    Search for '<%= @query %>'
+  <% end %>
+</h1>
+<%= link_to "Back..", @user unless @query.nil? %>
+<script type="text/javascript" charset="utf-8">
+  $('img.gravatar').error(function() {
+    $(this).attr('src', 'default.png');
+  });
+</script>
+<aside id="search-box">
+  <form action="<%= user_url(@user) + '/search'  %>" id="search-box" class="row">
+    <label for="search">Search:</label>
+    <input class="col-xs-4" type="text" id="searchbox" name="search" <%= @query unless @query.nil? %> />
+    <input class="col-xs-1 btn btn-primary" type="submit" id="searchsubmit"/>
+  </form>
+</aside>
+<section>
+    <ul class="users">
+      <%= render @albums %>
+    </ul>
+</section>
+
+<br>
+
+<%= link_to 'New Album', new_album_path(@user), class: 'btn btn-primary'%>

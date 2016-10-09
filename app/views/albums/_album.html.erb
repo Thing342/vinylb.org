@@ -1,0 +1,16 @@
+<li>
+  <div class="col-xs-1"><%= image_tag(album_image(album), class: 'gravatar', size: 50) %></div>
+  <div class="col-xs-7">
+    <span class="album-title"><%= album.title %></span>
+    <br>
+    <span class="album-subtitle">
+      <%= link_to album.artist, user_url(@user) + '/search?search=' + album.artist %>
+      -
+      <%= link_to album.year, user_url(@user) + '/search?search=' + album.year.to_s %>
+    </span>
+  </div>
+  <div class="col-xs-4 action-buttons">
+    <%= link_to 'Edit', edit_album_path(@user, album), class: "btn btn-primary" %>
+    <%= link_to 'Delete', album_url(@user, album), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %>
+  </div>
+</li>
